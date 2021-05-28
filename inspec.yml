@@ -29,6 +29,10 @@ depends:
   url: https://github.com/inspec/inspec-gcp/archive/v1.8.1.zip
   
 inputs:
+  - name: portefaix_version
+    description: "Portefaix Inspec profile"
+    type: String
+    value: "1.0"
   # {{gcp_project_id}}
   # must be defined at runtime by the user
   - name: gcp_project_id
