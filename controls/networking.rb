@@ -13,8 +13,8 @@
 # limitations under the License.
 
 gcp_project_id = attribute('project_id', description:'GCP project id')
-location = attribute("location", description:'GCP location')
-network_name= attribute("network_name")
+# location = attribute("location", description:'GCP location')
+# network_name= attribute("network_name")
 
 portefaix_version = input('portefaix_version')
 portefaix_section = 'networking'
