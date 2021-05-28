@@ -39,7 +39,7 @@ control "portefaix-gcp-#{portefaix_version}-#{portefaix_req}" do
   
   ref "Portefaix GCP #{portefaix_version}, #{portefaix_section}"
 
-  describe google_compute_network(project: project_id, name: 'default') do
+  describe google_compute_network(project: gcp_project_id, name: 'default') do
     it { should_not exist }
   end
 
