@@ -36,7 +36,7 @@ control "portefaix-gcp-#{portefaix_version}-#{portefaix_req}" do
   tag portefaix_version: "#{portefaix_version}"
   tag portefaix_section: "#{portefaix_section}"
   tag portefaix_req: "#{portefaix_req}"
-  
+
   ref "Portefaix GCP #{portefaix_version}, #{portefaix_section}"
 
   describe google_compute_network(project: gcp_project_id, name: 'default') do

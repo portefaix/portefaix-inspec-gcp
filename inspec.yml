@@ -27,7 +27,7 @@ supports:
 depends:
 - name: inspec-gcp
   url: https://github.com/inspec/inspec-gcp/archive/v1.8.1.zip
-  
+
 inputs:
   - name: portefaix_version
     description: "Portefaix Inspec profile"
