@@ -27,7 +27,7 @@ title "Networking standards"
 portefaix_req = "#{portefaix_section}.1"
 
 control "portefaix-gcp-#{portefaix_version}-#{portefaix_req}" do
-  title 'Ensure default network is deleted'
+  title 'Ensure firewall allows SSH access on port 22'
   desc ""
   impact 1.0
 
@@ -39,11 +39,8 @@ control "portefaix-gcp-#{portefaix_version}-#{portefaix_req}" do
   
   ref "Portefaix GCP #{portefaix_version}, #{portefaix_section}"
 
-  google_compute_firewalls(project: gcp_project_id).where { firewall_name !~ /^gke/ }.firewall_names.each do |firewall_name|
-    describe "[#{portefaix_version}][#{portefaix_req}][#{gcp_project_id}] #{firewall_name}" do
-      subject { google_compute_firewall(project: gcp_project_id, name: firewall_name) }
-      its('description') { should match(/#{fw_change_control_id_regex}/) }
-    end
+  describe google_compute_firewall(project: gcp_project_id, name: 'firewall-rule') do
+    its('allowed_ssh?')  { should be true }
   end
 
 end
