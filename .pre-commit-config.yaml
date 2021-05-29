@@ -12,13 +12,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# frozen_string_literal: true
-
-source "https://rubygems.org"
-
-git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
-
-# Dependencies
-
-gem 'inspec', '>= 4', '< 5'
-gem 'inspec-bin'
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+    -   id: trailing-whitespace
+    -   id: end-of-file-fixer
+    -   id: check-yaml
+        args:
+        - '--allow-multiple-documents'
+        exclude: mkdocs.yml
+    -   id: check-added-large-files
+-   repo: https://github.com/Lucas-C/pre-commit-hooks
+    rev: v1.1.10
+    hooks:
+    -   id: insert-license
+        files: \.yml
+        args:
+        - --license-filepath
+        - hack/config/licence.txt

@@ -1,5 +1,5 @@
 # Copyright (C) 2021 Nicolas Lamirault <nicolas.lamirault@gmail.com>
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -53,5 +53,3 @@ inspec-deps: ## Install requirements
 	@echo -e "$(OK_COLOR)Install requirements$(NO_COLOR)"
 	@PATH=${HOME}/.gem/ruby/3.0.0/bin/:${PATH} bundle config set path vendor/bundle --local \
 		&& PATH=${HOME}/.gem/ruby/3.0.0/bin/:${PATH} bundle install
-
-
