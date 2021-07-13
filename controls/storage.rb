@@ -13,21 +13,19 @@
 # limitations under the License.
 
 gcp_project_id = attribute('project_id', description:'GCP project id')
-# location = attribute("location", description:'GCP location')
-# network_name= attribute("network_name")
 
 portefaix_version = input('portefaix_version')
-portefaix_section = 'networking'
+portefaix_section = 'storage.labels'
 
-title "Networking standards"
+title "Storage labels standards"
 
-# Networking.1
+# Storage.Labels.1
 # =======================================================
 
 portefaix_req = "#{portefaix_section}.1"
 
 control "portefaix-gcp-#{portefaix_version}-#{portefaix_req}" do
-  title 'Ensure firewall allows SSH access on port 22'
+  title 'Ensure storage buckets have all mandatory labels'
   desc ""
   impact 1.0
 
@@ -39,8 +37,14 @@ control "portefaix-gcp-#{portefaix_version}-#{portefaix_req}" do
 
   ref "Portefaix GCP #{portefaix_version}, #{portefaix_section}"
 
-  describe google_compute_firewall(project: gcp_project_id, name: 'firewall-rule') do
-    its('allowed_ssh?')  { should be true }
+  google_storage_buckets(project: gcp_project_id).where(bucket_name: /#{gcp_project_id}/).bucket_names.each do |bucket_name|
+    describe google_storage_bucket(name: bucket_name) do
+      it { should exist }
+      its('name') { should match /#{gcp_project_id}/ }
+      its('labels.keys') { should include 'env' }
+      its('labels.keys') { should include 'service' }
+      its('labels.keys') { should include 'made-by' }
+    end
   end
 
 end
