@@ -116,5 +116,5 @@ control "portefaix-gcp-#{portefaix_version}-#{portefaix_req}" do
       # its('node_config.service_account') { should eq service_account }
     end
   end
-  
+
 end

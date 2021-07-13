@@ -52,4 +52,3 @@ inputs:
     description: "The number of node pool into the Kubernetes cluster ."
     type: numeric
     required: true
-  
