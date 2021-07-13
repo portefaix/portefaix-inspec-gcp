@@ -40,6 +40,7 @@ control "portefaix-gcp-#{portefaix_version}-#{portefaix_req}" do
   google_storage_buckets(project: gcp_project_id).where(bucket_name: /#{gcp_project_id}/).bucket_names.each do |bucket_name|
     describe google_storage_bucket(name: bucket_name) do
       it { should exist }
+      its('name') { should match '#{gcp_project_id}' }
       its('labels.keys') { should include 'env' }
       its('labels.keys') { should include 'service' }
       its('labels.keys') { should include 'made-by' }
