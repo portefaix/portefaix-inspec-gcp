@@ -39,7 +39,7 @@ control "portefaix-gcp-#{portefaix_version}-#{portefaix_req}" do
   ref "Portefaix GCP #{portefaix_version}, #{portefaix_section}"
 
   google_compute_zones(project: gcp_project_id).where(zone_name: /^eu/).zone_names.each do |zone_name|
-    google_container_clusters(project: gcp_project_id).cluster_names.each do |cluster_name|
+    google_container_clusters(project: gcp_project_id, location: kubernetes_location,).cluster_names.each do |cluster_name|
       describe google_container_cluster(project: gcp_project_id, location: kubernetes_location, name: cluster_name) do
         it { should exist }
         its('status') { should eq 'RUNNING' }
