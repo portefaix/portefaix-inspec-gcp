@@ -50,6 +50,6 @@ inputs:
     required: true
   - name: kubernetes_node_pool_count
     description: "The number of node pool into the Kubernetes cluster ."
-    type: Number
+    type: numeric
     required: true
   
