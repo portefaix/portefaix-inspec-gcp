@@ -40,3 +40,7 @@ inputs:
     type: String
     required: true
     value: 'aaa-bbb-ccc-ddd'
+  - name: kubernetes_location
+    description: "The location of the Kubernetes cluster."
+    type: String
+    required: true
