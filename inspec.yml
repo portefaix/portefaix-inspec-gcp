@@ -42,7 +42,7 @@ inputs:
     value: 'aaa-bbb-ccc-ddd'
   - name: kubernetes_cluster_name
     description: "The Kubernetes cluster name."
-    type: Number
+    type: String
     required: true
   - name: kubernetes_location
     description: "The location of the Kubernetes cluster."
