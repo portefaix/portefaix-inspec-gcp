@@ -41,7 +41,7 @@ control "portefaix-gcp-#{portefaix_version}-#{portefaix_req}" do
   ref "Portefaix GCP #{portefaix_version}, #{portefaix_section}"
 
   google_compute_zones(project: gcp_project_id).where(zone_name: /^eu/).zone_names.each do |zone_name|
-    google_container_clusters(project: gcp_project_id, location: location,).cluster_names.each do |cluster_name|
+    google_container_clusters(project: gcp_project_id, location: location,).where(cluster_name: cluster_name).cluster_names.each do |cluster_name|
       describe google_container_cluster(project: gcp_project_id, location: location, name: cluster_name) do
         it { should exist }
         its('status') { should eq 'RUNNING' }
@@ -116,11 +116,11 @@ control "portefaix-gcp-#{portefaix_version}-#{portefaix_req}" do
   ref "Portefaix GCP #{portefaix_version}, #{portefaix_section_node_pool}"
 
   google_compute_zones(project: gcp_project_id).where(zone_name: /^eu/).zone_names.each do |zone_name|
-    google_container_clusters(project: gcp_project_id, location: location,).cluster_names.each do |cluster_name|
+    google_container_clusters(project: gcp_project_id, location: location,).where(cluster_name: cluster_name).cluster_names.each do |cluster_name|
       describe google_container_cluster(project: gcp_project_id, location: location, name: cluster_name) do
         its('status') { should eq 'RUNNING' }
         # its('node_config.disk_size_gb'){should eq 100}
-        its('node_config.image_type') { should eq "COS" }
+        its('node_config.image_type') { should eq "COS_CONTAINERD" }
         # its('node_config.machine_type'){should eq "n1-standard-1"}
         its('node_pools.count') { should eq node_pool_count }
         # its('node_config.oauth_scopes') { should eq ["https://www.googleapis.com/auth/logging.write", "https://www.googleapis.com/auth/monitoring"] }
