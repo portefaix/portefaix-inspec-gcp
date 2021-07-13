@@ -37,24 +37,12 @@ control "portefaix-gcp-#{portefaix_version}-#{portefaix_req}" do
 
   ref "Portefaix GCP #{portefaix_version}, #{portefaix_section}"
 
-  google_storage_buckets(project: gcp_project_id).bucket_names.each do |bucket_name|
+  google_storage_buckets(project: gcp_project_id).where(bucket_name: /#{gcp_project_id}/).bucket_names.each do |bucket_name|
     describe google_storage_bucket(name: bucket_name) do
       it { should exist }
       its('labels.keys') { should include 'env' }
       its('labels.keys') { should include 'service' }
       its('labels.keys') { should include 'made-by' }
-    end
-  end
-
-  google_compute_zones(project: gcp_project_id).where(zone_name: /^eu/).zone_names.each do |zone_name|
-    google_compute_instances(project: gcp_project_id, zone: zone_name).instance_names.each do |instance_name|
-      describe google_compute_instance(project: gcp_project_id, zone: zone_name, name: instance_name) do
-        it { should exist }
-        # its('name') { should match '#{CUSTOMER}' }
-        its('labels.keys') { should include 'env' }
-        its('labels.keys') { should include 'service' }
-        its('labels.keys') { should include 'made-by' }
-      end
     end
   end
 
