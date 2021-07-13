@@ -40,7 +40,16 @@ inputs:
     type: String
     required: true
     value: 'aaa-bbb-ccc-ddd'
+  - name: kubernetes_cluster_name
+    description: "The Kubernetes cluster name."
+    type: String
+    required: true
   - name: kubernetes_location
     description: "The location of the Kubernetes cluster."
     type: String
     required: true
+  - name: kubernetes_node_pool_count
+    description: "The number of node pool into the Kubernetes cluster ."
+    type: numeric
+    required: true
+  
