@@ -17,7 +17,7 @@
 name: inspec-gcp-portefaix
 title: "InSpec GCP Portefaix"
 maintainer: "Nicolas Lamirault"
-copyright: "(c) 2021 Nicolas Lamirault"
+copyright: "(c) Nicolas Lamirault"
 copyright_email: "nicolas.lamirault@gmail.com"
 license: "Apache-2.0"
 summary: "Inspec Google Cloud Platform Portefaix Profile"

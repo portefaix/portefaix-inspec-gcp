@@ -22,5 +22,5 @@ git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
 # Dependencies
 
-gem 'inspec', '>= 4', '< 6'
-gem 'inspec-bin'
+gem "inspec", "5.18.14" # '>= 4', '< 6'
+gem "inspec-bin", "5.18.14"
