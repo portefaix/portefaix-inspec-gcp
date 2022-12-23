@@ -1,0 +1,27 @@
+name: Inspec / Test
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+
+jobs:
+  aws:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.2.0
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1.128.0
+        with:
+          # Not needed with a .ruby-version file
+          ruby-version: '3.0' 
+          # runs 'bundle install' and caches installed gems automatically
+          bundler-cache: true
+      
+      - name: Setup dependencies
+        run: bundle install
