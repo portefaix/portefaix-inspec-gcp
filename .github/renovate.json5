@@ -121,6 +121,22 @@
       "matchUpdateTypes": ["patch"],
       "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "dependency/github", "priority/low", "size/xs"]
     },
+    // Labels for Ruby
+    {
+      "datasources": ["rubygems", "ruby-version"],
+      "updateTypes": ["major"],
+      "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "dependency/ruby", "priority/high", "size/xs"]
+    },
+    {
+      "datasources": ["rubygems", "ruby-version"],
+      "updateTypes": ["minor"],
+      "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "dependency/ruby", "priority/medium", "size/xs"]
+    },
+    {
+      "datasources": ["rubygems", "ruby-version"],
+      "updateTypes": ["patch"],
+      "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "dependency/ruby", "priority/low", "size/xs"]
+    },
     // Enable auto-merge docker
     // {
     //   "datasources": ["docker"],
